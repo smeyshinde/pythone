@@ -1,0 +1,48 @@
++*In[ ]:*+
+[source, ipython3]
+----
+#data preprocessing
+----
+
+
++*In[7]:*+
+[source, ipython3]
+----
+import pandas as pd
+import numpy as np
+df=pd.read_csv('data.csv')
+print(df)
+x=df.iloc[ : , :-1 ]
+y=df.iloc[ : , -1 ]
+
+#handlind missing data
+from sklearn.impute import SimpleImputer
+i=SimpleImputer(missing_values=np.nan,strategy='mean')
+i.fit(x[1:])
+x[1:]=i.transform(x[1:])
+print(x)
+----
+
+
++*Out[7]:*+
+----
+   ID  Value1  Value2  Value3
+0   1    10.0    50.0    25.0
+1   2    15.0     NaN     NaN
+2   3    10.0    30.0    35.0
+3   4     NaN    10.0    40.0
+4   5    25.0    50.0     NaN
+   ID     Value1  Value2
+0   1  10.000000    50.0
+1   2  15.000000    30.0
+2   3  10.000000    30.0
+3   4  16.666667    10.0
+4   5  25.000000    50.0
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
